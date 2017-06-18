@@ -16,9 +16,6 @@ class TodoApp extends React.Component {
         return {items: items}
     }
     toggleAllComplete({done}) {
-        var mark = done ? 'checked' : 'unchecked'
-        alert(`Marking all items as ${mark}`)
-
         let items = this.state.items
         items = items.map((obj, n) => {return {id: obj.id, title: obj.title, checked: done}})
         this.setState({items: items})
@@ -34,16 +31,26 @@ class TodoApp extends React.Component {
         this.setState({items: items})
     }
     handleItemRemove(item) {
+        let res = confirm("Do you want to remove this item?")
+        if (!res)
+            return
         let items = this.state.items
         items = items.filter((obj) => !(obj.id == item.id))
         this.setState({items: items})
     }
     createTodoItem(item) {
         console.log('creating item')
-        this.setState(prevState => {return {items: [...prevState.items, {title: item.title, id: prevState.items.length, checked: false}]}})
+        let newId = this.state.items.reduce((acc, cur) => {
+            if (cur.id > acc)
+                return cur.id
+            else
+                return acc
+        }, 0)
+        this.setState(prevState => {return {items: [...prevState.items, {title: item.title, id: newId + 1, checked: false}]}})
     }
     clearAllChecked() {
-        alert("Clearing done items")
+        if (!confirm("Clear done items?"))
+            return
         let items = this.state.items
         items = items.filter((obj) => !obj.checked)
         this.setState({items: items})
@@ -55,7 +62,9 @@ class TodoApp extends React.Component {
                 acc += 1
             return acc
         }, 0)
-        items = items.map((obj, n) => <TodoItem key={n} id={obj.id} title={obj.title} checked={obj.checked} handleChange={this.handleItemChange.bind(this)} handleRemove={this.handleItemRemove.bind(this)}/>)
+        items = items.map((obj, n) => <TodoItem key={obj.id} id={obj.id} title={obj.title} checked={obj.checked}
+            handleChange={this.handleItemChange.bind(this)}
+            handleRemove={this.handleItemRemove.bind(this)}/>)
         return <div id="todoapp">
         <Header onCreateTodo={this.createTodoItem.bind(this)} />
         {items.length ? <Content items={items} toggleAllComplete={this.toggleAllComplete.bind(this)}/> : null}
