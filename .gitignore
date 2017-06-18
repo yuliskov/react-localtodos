@@ -1,0 +1,9 @@
+logs
+*.log
+*.bak
+npm-debug.log*
+node_modules/
+old/
+dist
+.DS_Store
+.editorconfig
