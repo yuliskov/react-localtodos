@@ -4,6 +4,8 @@
 
 - Webpack support
 - Styl support
+- Redux
+- Undo your steps
 
 ## Start the demo server
 
