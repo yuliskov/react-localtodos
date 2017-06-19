@@ -15,6 +15,10 @@ class TodoApp extends React.Component {
         const items = arr.map((i, n) => {return {id: n, title: "No title", checked: true}})
         return {items: items}
     }
+    onKeyPress(e) {
+        // Ctrl-z
+        if (e.keyCode == 90 && e.ctrlKey) this.props.doUndo()
+    }
     render() {
         let items = this.props.items
         let doneNum = items.reduce((acc, cur) => {
@@ -23,7 +27,7 @@ class TodoApp extends React.Component {
             return acc
         }, 0)
         items = items.map((obj, n) => <TodoItem key={obj.id} id={obj.id} title={obj.title} checked={obj.checked}/>)
-        return <div id="todoapp">
+        return <div id="todoapp" onKeyDown={this.onKeyPress.bind(this)}>
         <Header/>
         {items.length ? <Content items={items}/> : null}
         {items.length ? <Footer done={doneNum} remaining={items.length - doneNum}/> : null}

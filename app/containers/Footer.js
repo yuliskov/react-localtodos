@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 const ConnectedFooter = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Footer)
 
 export default ConnectedFooter

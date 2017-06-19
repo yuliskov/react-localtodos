@@ -10,11 +10,11 @@ class Content extends React.Component {
     }
     render() {
         return <section id="main">
-          <input id="toggle-all" type="checkbox" onClick={this.toggleAllComplete.bind(this)}/>
-          <label htmlFor="toggle-all">Mark all as complete</label>
-          <ul id="todo-list">
-            {this.props.items}
-          </ul>
+            <input id="toggle-all" type="checkbox" onClick={this.toggleAllComplete.bind(this)}/>
+            <label htmlFor="toggle-all">Mark all as complete</label>
+            <ul id="todo-list">
+                {this.props.items}
+            </ul>
         </section>
     }
 }

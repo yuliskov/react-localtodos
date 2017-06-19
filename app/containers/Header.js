@@ -6,14 +6,14 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onCreateTodo: ({title}) => {
-    dispatch(addTodo(title))
-  }
+    onCreateTodo: ({title}) => {
+        dispatch(addTodo(title))
+    }
 })
 
 const ConnectedHeader = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Header)
 
 export default ConnectedHeader

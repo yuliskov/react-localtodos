@@ -6,14 +6,14 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  toggleAllComplete: ({done}) => {
-    dispatch(toggleAllTodos(done))
-  }
+    toggleAllComplete: ({done}) => {
+        dispatch(toggleAllTodos(done))
+    }
 })
 
 const ConnectedContent = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Content)
 
 export default ConnectedContent

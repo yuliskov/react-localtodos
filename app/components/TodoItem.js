@@ -35,7 +35,6 @@ class TodoItem extends React.Component {
             this.editInput.focus()
     }
     render() {
-        console.log('rerender TodoItem')
         let editing = this.state.editing ? 'editing' : ''
         let checked = this.props.checked ? 'done' : ''
         let itemClassName = `${editing} ${checked}`

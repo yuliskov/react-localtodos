@@ -6,17 +6,17 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleChange: ({id, title, checked}) => {
-    dispatch(updateTodo(id, title, checked))
-  },
-  handleRemove: ({id}) => {
-    dispatch(removeTodo(id))
-  }
+    handleChange: ({id, title, checked}) => {
+        dispatch(updateTodo(id, title, checked))
+    },
+    handleRemove: ({id}) => {
+        dispatch(removeTodo(id))
+    }
 })
 
 const ConnectedTodoItem = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(TodoItem)
 
 export default ConnectedTodoItem
