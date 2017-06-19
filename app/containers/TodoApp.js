@@ -3,7 +3,7 @@ import TodoApp from '../components/TodoApp'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    items: state.todos
+    items: state.todos.present
   }
 }
 
