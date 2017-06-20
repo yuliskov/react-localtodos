@@ -1,12 +1,24 @@
 import undoable from 'redux-undo'
+import {REHYDRATE} from 'redux-persist/constants'
+import {processSpecial} from 'redux-persist'
 
 const todos = (state = [], action) => {
     switch (action.type) {
+        case REHYDRATE:
+            var incoming = action.payload.todos.present
+            if (incoming) return [...state, ...incoming]
+            return state
         case 'ADD_TODO':
+            // calculate id (maybe state is restored??)
+            let nextId = state.reduce((acc, cur) => {
+                if (acc < cur.id)
+                    return cur.id
+                return acc
+            }, 0)
             return [
                 ...state,
                 {
-                    id: action.id,
+                    id: ++nextId,
                     title: action.title,
                     checked: false
                 }

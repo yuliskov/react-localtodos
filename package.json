@@ -21,8 +21,7 @@
     "react-redux": "^5.0.5",
     "react-router": "3.0.5",
     "redux": "^3.7.0",
-    "redux-storage": "^4.1.2",
-    "redux-storage-engine-localstorage": "^1.1.4",
+    "redux-persist": "^4.8.0",
     "redux-undo": "^0.6.1",
     "stylus": "^0.54.5"
   },

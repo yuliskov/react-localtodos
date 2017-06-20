@@ -4,9 +4,9 @@ import TodoApp from 'containers/TodoApp';
 import { compose, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
-// import {store} from './addons/localStorage'
+import store from './addons/localStorage'
 
-const store = createStore(reducers)
+// const store = createStore(reducers)
 
 ReactDOM.render(
     <Provider store={store}>
