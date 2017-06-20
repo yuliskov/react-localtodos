@@ -19,6 +19,7 @@ app.use(require('webpack-hot-middleware')(compiler))
 app.get('*', async (req, res) => {
   const html = await readFile(path.join(__dirname, 'html/index.html'), 'utf8')
   const page = html
+    .replace(/{{Title}}/, 'Todos')
     .replace(/{{State}}/, '')
     .replace(/{{App}}/, '<main id="root"></main>');
   res.status(200).send(page)

@@ -24,7 +24,8 @@
     "redux": "^3.7.0",
     "redux-persist": "^4.8.0",
     "redux-undo": "^0.6.1",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "url-loader": "^0.5.9"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

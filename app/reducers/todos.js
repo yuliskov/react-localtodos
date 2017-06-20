@@ -5,9 +5,10 @@ import {processSpecial} from 'redux-persist'
 const todos = (state = [], action) => {
     switch (action.type) {
         case REHYDRATE:
+            if (!action.payload.todos)
+                return state
             var incoming = action.payload.todos.present
-            if (incoming) return [...state, ...incoming]
-            return state
+            return [...state, ...incoming]
         case 'ADD_TODO':
             // calculate id (maybe state is restored??)
             let nextId = state.reduce((acc, cur) => {
