@@ -6,10 +6,10 @@ https://yuliskov.github.io/react-localtodos/
 
 ## Features
 
-- Webpack support
-- Styl support
-- Redux
-- Undo your steps
+- Add/Change/Remove/Toggle todo items
+- Full undo support
+- Saves state between page reload
+- Used technologies: React, Redux
 
 ## Start the demo server
 

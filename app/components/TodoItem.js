@@ -8,7 +8,7 @@ class TodoItem extends React.Component {
         }
     }
     toggleDone(e) {
-        this.props.handleChange({title: this.props.title, id: this.props.id, checked: e.target.checked})
+        this.props.toggleTodo({title: this.props.title, id: this.props.id, checked: e.target.checked})
     }
     edit() {
         this.setState({editing: true})

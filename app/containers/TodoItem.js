@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    toggleDone: ({id, checked}) => {
+    toggleTodo: ({id, checked}) => {
         dispatch(toggleTodo(id))
     },
     handleChange: ({id, title, checked}) => {

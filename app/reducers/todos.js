@@ -1,4 +1,5 @@
 import undoable from 'redux-undo'
+import {excludeAction} from 'redux-undo'
 import {REHYDRATE} from 'redux-persist/constants'
 import {getStoredState} from 'redux-persist'
 
@@ -28,10 +29,9 @@ const todos = (state = [], action) => {
                 t.id == action.id ? {...t, checked: action.checked, title: action.title} : t
             )
         case 'TOGGLE_TODO':
-            return state.map(t => {
-                let prevChecked = t.checked
-                return t.id == action.id ? {...t, checked: !prevChecked} : t
-            })
+            return state.map(t =>
+                t.id == action.id ? {...t, checked: !t.checked} : t
+            )
         case 'TOGGLE_ALL_TODOS':
             return state.map(t => ({...t, checked: action.checked}))
         default:
@@ -65,7 +65,7 @@ function undoableTodosDecorator(reducer) {
 }
 
 const undoableTodos = undoableTodosDecorator(undoable(todos, {
-    limit: 10 // set a limit for the history
+    limit: 10, filter: excludeAction(['TOGGLE_TODO', 'TOGGLE_ALL_TODOS'])
   }))
 
 export default undoableTodos
