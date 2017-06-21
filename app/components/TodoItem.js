@@ -39,7 +39,7 @@ class TodoItem extends React.Component {
         let itemClassName = `${editing} ${checked}`
         return <li className={itemClassName}>
             <div className="view" onDoubleClick={this.edit.bind(this)}>
-              <input className="toggle" type="checkbox" checked={this.props.checked} onClick={this.toggleDone.bind(this)} />
+              <input className="toggle" type="checkbox" checked={this.props.checked} onChange={this.toggleDone.bind(this)} />
               <label>{this.props.title}</label>
               <a className="destroy" onClick={this.clear.bind(this)}></a>
             </div>

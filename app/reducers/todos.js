@@ -65,7 +65,7 @@ function undoableTodosDecorator(reducer) {
 }
 
 const undoableTodos = undoableTodosDecorator(undoable(todos, {
-    limit: 10, filter: excludeAction(['TOGGLE_TODO', 'TOGGLE_ALL_TODOS'])
+    limit: 10, filter: excludeAction(['TOGGLE_TODO'])
   }))
 
 export default undoableTodos
