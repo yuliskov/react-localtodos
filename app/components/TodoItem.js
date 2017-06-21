@@ -17,20 +17,19 @@ class TodoItem extends React.Component {
         this.props.handleRemove({title: this.props.title, id: this.props.id, checked: this.props.checked})
     }
     updateOnEnter(e) {
-        if (e.keyCode == 13) this.close();
+        if (e.keyCode == 13) this.close(e);
     }
-    close() {
-        let value = this.props.title
+    close(e) {
+        let value = e.target.value
         if (!value) {
             this.clear()
-        } else {
-            this.setState({editing: false})
+        } else if (this.props.title != value) {
+            this.props.handleChange({title: e.target.value, id: this.props.id, checked: this.props.checked})
         }
+        this.setState({editing: false})
     }
-    handleChange(e) {
-        this.props.handleChange({title: e.target.value, id: this.props.id, checked: this.props.checked})
-    }
-    componentDidMount() {
+    componentDidUpdate() {
+        this.editInput.value = this.props.title // fix update uncontrolled components
         if (this.state.editing)
             this.editInput.focus()
     }
@@ -44,10 +43,9 @@ class TodoItem extends React.Component {
               <label>{this.props.title}</label>
               <a className="destroy" onClick={this.clear.bind(this)}></a>
             </div>
-            <input className="edit" type="text" value={this.props.title} ref={(input) => {this.editInput = input}}
+            <input className="edit" type="text" defaultValue={this.props.title} ref={(input) => {this.editInput = input}}
                 onKeyPress={this.updateOnEnter.bind(this)}
-                onBlur={this.close.bind(this)}
-                onChange={this.handleChange.bind(this)}/>
+                onBlur={this.close.bind(this)}/>
             </li>
     }
 }
