@@ -20,6 +20,11 @@ export const updateTodo = (id, title, checked) => ({
   id, title, checked
 })
 
+export const toggleTodo = (id) => ({
+  type: 'TOGGLE_ALL_TODOS',
+  id
+})
+
 export const toggleAllTodos = (checked) => ({
   type: 'TOGGLE_ALL_TODOS',
   checked

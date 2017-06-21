@@ -1,15 +1,9 @@
 import undoable from 'redux-undo'
 import {REHYDRATE} from 'redux-persist/constants'
-import {processSpecial} from 'redux-persist'
+import {getStoredState} from 'redux-persist'
 
 const todos = (state = [], action) => {
     switch (action.type) {
-        case REHYDRATE:
-            console.log(action)
-            if (!action.payload.todos)
-                return state
-            var incoming = action.payload.todos.present
-            return [...state, ...incoming]
         case 'ADD_TODO':
             // calculate id (maybe state is restored??)
             let nextId = state.reduce((acc, cur) => {
@@ -33,6 +27,11 @@ const todos = (state = [], action) => {
             return state.map(t =>
                 t.id == action.id ? {...t, checked: action.checked, title: action.title} : t
             )
+        case 'TOGGLE_TODO':
+            return state.map(t => {
+                let prevChecked = t.checked
+                return t.id == action.id ? {...t, checked: !prevChecked} : t
+            })
         case 'TOGGLE_ALL_TODOS':
             return state.map(t => ({...t, checked: action.checked}))
         default:
@@ -40,6 +39,33 @@ const todos = (state = [], action) => {
     }
 }
 
-const undoableTodos = undoable(todos)
+// Source: http://redux.js.org/docs/recipes/ImplementingUndoHistory.html
+function undoableTodosDecorator(reducer) {
+    // Call the reducer with empty action to populate the initial state
+    const initialState = {
+        past: [],
+        present: [],
+        future: []
+    }
+
+    // Return a reducer
+    return function (state = initialState, action) {
+        const { past, present, future } = state
+
+        switch (action.type) {
+          case REHYDRATE:
+            if (!action.payload.todos)
+              return state
+            var incoming = action.payload.todos
+            return incoming
+          default:
+            return reducer(state, action)
+        }
+    }
+}
+
+const undoableTodos = undoableTodosDecorator(undoable(todos, {
+    limit: 10 // set a limit for the history
+  }))
 
 export default undoableTodos

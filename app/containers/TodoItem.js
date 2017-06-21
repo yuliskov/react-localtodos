@@ -1,11 +1,14 @@
 import { connect } from 'react-redux'
 import TodoItem from '../components/TodoItem'
-import {updateTodo, removeTodo} from '../actions'
+import {updateTodo, removeTodo, toggleTodo} from '../actions'
 
 const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    toggleDone: ({id, checked}) => {
+        dispatch(toggleTodo(id))
+    },
     handleChange: ({id, title, checked}) => {
         dispatch(updateTodo(id, title, checked))
     },
