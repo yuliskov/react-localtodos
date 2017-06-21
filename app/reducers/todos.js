@@ -5,6 +5,7 @@ import {processSpecial} from 'redux-persist'
 const todos = (state = [], action) => {
     switch (action.type) {
         case REHYDRATE:
+            console.log(action)
             if (!action.payload.todos)
                 return state
             var incoming = action.payload.todos.present

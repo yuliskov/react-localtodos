@@ -9,6 +9,7 @@ class TodoApp extends React.Component {
     constructor(props) {
         super(props)
         // this.state = this.initState()
+        document.body.addEventListener('keydown', this.onKeyPress.bind(this))
     }
     initState() {
         const arr = [1,2,3,4]
@@ -27,7 +28,7 @@ class TodoApp extends React.Component {
             return acc
         }, 0)
         items = items.map((obj, n) => <TodoItem key={obj.id} id={obj.id} title={obj.title} checked={obj.checked}/>)
-        return <div id="todoapp" onKeyDown={this.onKeyPress.bind(this)}>
+        return <div id="todoapp">
         <Header/>
         {items.length ? <Content items={items}/> : null}
         {items.length ? <Footer done={doneNum} remaining={items.length - doneNum}/> : null}
