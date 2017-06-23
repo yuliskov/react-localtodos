@@ -3,6 +3,7 @@ import express from 'express'
 import webpack from 'webpack'
 import config from './webpack.config.dev'
 import { readFile } from 'mz/fs'
+import { SITE_TITLE } from './app/constants'
 
 const app = express()
 // app.use(express.static('static'))
@@ -19,7 +20,7 @@ app.use(require('webpack-hot-middleware')(compiler))
 app.get('*', async (req, res) => {
   const html = await readFile(path.join(__dirname, 'html/index.html'), 'utf8')
   const page = html
-    .replace(/{{Title}}/, 'Todos')
+    .replace(/{{Title}}/, SITE_TITLE)
     .replace(/{{State}}/, '')
     .replace(/{{App}}/, '<main id="root"></main>');
   res.status(200).send(page)

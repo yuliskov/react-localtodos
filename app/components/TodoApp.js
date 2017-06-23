@@ -3,12 +3,13 @@ import TodoItem from '../containers/TodoItem'
 import Footer from '../containers/Footer'
 import Header from '../containers/Header'
 import Content from '../containers/Content'
-require('./TodoApp.styl')
+import ForkMeRibbon from '../components/ForkMeRibbon'
+require('../assets/TodoApp.styl')
 
 class TodoApp extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = this.initState()
+        // global event listener
         document.body.addEventListener('keydown', this.onKeyPress.bind(this))
     }
     initState() {
@@ -29,6 +30,7 @@ class TodoApp extends React.Component {
         }, 0)
         items = items.map((obj, n) => <TodoItem key={obj.id} id={obj.id} title={obj.title} checked={obj.checked}/>)
         return <div id="todoapp">
+        <ForkMeRibbon/>
         <Header/>
         {items.length ? <Content items={items}/> : null}
         {items.length ? <Footer done={doneNum} remaining={items.length - doneNum}/> : null}
