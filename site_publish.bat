@@ -5,7 +5,9 @@ set DIST_DIR=dist
 for /f %%i in ('git config --get remote.origin.url') do set REMOTE_URL=%%i
 
 REM build our site to %DIST_DIR% folder
-npm build
+call npm run build
+
+if errorlevel 1 goto ERROR_HAPPEN
 
 REM init git repo
 if exist %DIST_DIR%/.git goto DIR_EXIST
@@ -24,5 +26,7 @@ git add -A
 git commit -m 'gh-pages'
 git push --set-upstream origin gh-pages
 popd
+
+:ERROR_HAPPEN
 
 pause

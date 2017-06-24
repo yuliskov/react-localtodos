@@ -4,6 +4,12 @@
   "env": {
     "development": {
       "presets": ["react-hmre"]
+    },
+    "production": {
+        "presets": ["react-optimize"]
+    },
+    "targets": {
+        "browsers": ["last 2 versions"]
     }
   }
 }
