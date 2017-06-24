@@ -4,7 +4,7 @@ import {removeCheckedTodos} from '../actions'
 import { ActionCreators as UndoActionCreators } from 'redux-undo'
 
 const mapStateToProps = (state, ownProps) => ({
-    canUndo: state.todos.past.length
+    undoCount: state.todos.past.length
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

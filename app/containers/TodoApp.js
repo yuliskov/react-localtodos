@@ -4,7 +4,8 @@ import { ActionCreators as UndoActionCreators } from 'redux-undo'
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        items: state.todos.present
+        items: state.todos.present,
+        undoCount: state.todos.past.length
     }
 }
 
