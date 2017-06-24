@@ -14,9 +14,7 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new ExtractTextPlugin('style.css', {
-      publicPath: '/'
-    }),
+    new ExtractTextPlugin('style.css'),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
