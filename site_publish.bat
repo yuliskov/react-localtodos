@@ -5,6 +5,7 @@ set DIST_DIR=dist
 for /f %%i in ('git config --get remote.origin.url') do set REMOTE_URL=%%i
 
 REM build our site to %DIST_DIR% folder
+set NODE_ENV=production
 call npm run build
 
 if errorlevel 1 goto ERROR_HAPPEN

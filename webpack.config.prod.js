@@ -14,37 +14,56 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: './app/index',
+        postcss: [ // <---- postcss configs go here under LoadOptionsPlugin({ options: { ??? } })
+          autoprefixer(), initial()
+        ]
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
         warnings: false
       }
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      },
-      __DEV__: false
     })
   ],
   resolve: {
-    root: path.join(__dirname, 'app')
+    modules: [
+      path.join(__dirname, 'app'),
+      'node_modules'
+    ]
   },
-  postcss: [autoprefixer(), initial()],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js)x?$/,
-        loaders: ['babel'],
-        include: path.join(__dirname)
+        use: 'babel-loader'
       },
       {
         test: /\.styl$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader!postcss-loader!stylus-loader'
-        )
+        use: [{loader: 'style-loader'},
+        {loader: 'css-loader', options: {minimize: true}},
+        {loader: 'postcss-loader'},
+        {loader: 'stylus-loader'}
+      ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   }

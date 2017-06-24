@@ -33,7 +33,7 @@ class TodoApp extends React.Component {
         <ForkMeRibbon/>
         <Header/>
         {items.length ? <Content items={items}/> : null}
-        {items.length ? <Footer done={doneNum} remaining={items.length - doneNum}/> : null}
+        <Footer done={doneNum} count={items.length} remaining={items.length - doneNum}/>
         </div>
     }
 }
