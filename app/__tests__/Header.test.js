@@ -1,7 +1,6 @@
 import React from 'react'
 import {mount} from 'enzyme'
 import Header from '../components/Header'
-// import jest from 'jest'
 
 function setup() {
     const props = {

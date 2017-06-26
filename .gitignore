@@ -9,3 +9,4 @@ dist
 .DS_Store
 .editorconfig
 notes.txt
+.tern-project
