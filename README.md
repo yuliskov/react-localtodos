@@ -1,4 +1,4 @@
-# React port of Backbone's [local-todos](http://backbonejs.org/docs/todos.html) sample app
+# React port of Backbone's [local-todos](http://backbonejs.org/docs/todos.html)
 
 ## Demo
 
@@ -11,11 +11,11 @@ https://yuliskov.github.io/react-localtodos/
 - Saves state between page reload
 - Used technologies: React, Redux
 
-## Start the demo server
+## Running Example
 
+**In the project directory, run:**
 ```console
-$ git clone git@github.com:yuliskov/react-localtodos.git
-$ cd react-localtodos
 $ npm install
 $ npm start
 ```
+**Open [http://localhost:3000](http://localhost:3000) to view it in the browser.**
