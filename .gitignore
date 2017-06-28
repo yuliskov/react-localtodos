@@ -5,6 +5,7 @@ logs
 npm-debug.log*
 node_modules/
 gh-pages/
+build/
 old/
 dist
 .DS_Store

@@ -1,15 +1,20 @@
 {
-  "plugins": ["transform-object-rest-spread"],
-  "presets": ["react", "es2015", "stage-3"],
-  "env": {
-    "development": {
-      "presets": ["react-hmre"]
-    },
-    "production": {
-        "presets": ["react-optimize"]
-    },
-    "targets": {
-        "browsers": ["last 2 versions"]
+    "plugins": ["transform-object-rest-spread"],
+    "presets": ["react", "es2015", "stage-3"],
+    "env": {
+        "development": {
+            "presets": ["react-hmre"],
+            "plugins":[
+                ["react-intl", {
+                    "messagesDir": "./build/messages/"
+                }]
+            ]
+        },
+        "production": {
+            "presets": ["react-optimize"]
+        },
+        "targets": {
+            "browsers": ["last 2 versions"]
+        }
     }
-  }
 }

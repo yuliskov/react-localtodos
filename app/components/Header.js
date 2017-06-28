@@ -1,4 +1,12 @@
 import React from 'react'
+import {FormattedMessage, intlShape, injectIntl, defineMessages} from 'react-intl';
+
+const messages = defineMessages({
+    placeholder: {
+        id: 'header.placeholder',
+        defaultMessage: 'What needs to be done?',
+    },
+})
 
 class Header extends React.Component {
   createOnEnter(e) {
@@ -11,9 +19,9 @@ class Header extends React.Component {
   render() {
     return <header>
       <h1>Todos</h1>
-      <input id="new-todo" type="text" placeholder="What needs to be done?" onKeyPress={this.createOnEnter.bind(this)}/>
+      <input id="new-todo" type="text" placeholder={this.props.intl.formatMessage(messages.placeholder)} onKeyPress={this.createOnEnter.bind(this)}/>
     </header>
   }
 }
 
-export default Header
+export default injectIntl(Header)
