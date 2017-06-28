@@ -7,9 +7,11 @@ function setup() {
         handleChange: jest.fn(),
         toggleTodo: jest.fn(),
         handleRemove: jest.fn(),
-        title: 'New Todo',
-        checked: false,
-        id: 5
+        todoItem: {
+            title: 'New Todo',
+            checked: false,
+            id: 5
+        }
     }
 
     const enzymeWrapper = mount(<TodoItem {...props} />)

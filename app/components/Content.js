@@ -9,8 +9,10 @@ class Content extends React.Component {
     render() {
         if (this.props.items == 0)
             return null
-        const items = this.props.items.map((obj, n) => <TodoItem key={obj.id} id={obj.id} title={obj.title} checked={obj.checked}
-            toggleTodo={this.props.toggleTodo.bind(this)} handleChange={this.props.handleChange.bind(this)} handleRemove={this.props.handleRemove.bind(this)} />)
+        const items = this.props.items.map((obj, n) => <TodoItem key={obj.id} todoItem={obj}
+            toggleTodo={this.props.toggleTodo.bind(this)}
+            handleChange={this.props.handleChange.bind(this)}
+            handleRemove={this.props.handleRemove.bind(this)} />)
         return <section id="main">
             <input id="toggle-all" type="checkbox" onClick={this.toggleAllComplete.bind(this)}/>
             <label htmlFor="toggle-all">Mark all as complete</label>
