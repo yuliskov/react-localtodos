@@ -17,7 +17,7 @@ class TodoItem extends React.Component {
         this.props.handleRemove(this.props.todoItem)
     }
     updateOnEnter(e) {
-        if (e.keyCode == 13) this.close(e);
+        if (e.key == 'Enter') this.close(e);
     }
     close(e) {
         const title = this.props.todoItem.title
@@ -27,7 +27,7 @@ class TodoItem extends React.Component {
         if (!value) {
             this.clear()
         } else if (title != value) {
-            this.props.handleChange({title: e.target.value, id: id, checked: checked})
+            this.props.handleChange({title: value, id: id, checked: checked})
         }
         this.setState({editing: false})
     }
