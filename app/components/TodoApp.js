@@ -1,9 +1,8 @@
 import React from 'react'
-import TodoItem from '../containers/TodoItem'
-import Footer from '../containers/Footer'
-import Header from '../containers/Header'
-import Content from '../containers/Content'
 import ForkMeRibbon from '../components/ForkMeRibbon'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Content from '../components/Content'
 require('../assets/TodoApp.styl')
 
 class TodoApp extends React.Component {
@@ -28,14 +27,14 @@ class TodoApp extends React.Component {
                 acc += 1
             return acc
         }, 0)
-        items = items.map((obj, n) => <TodoItem key={obj.id} id={obj.id} title={obj.title} checked={obj.checked}/>)
+
         return <div id="todoapp">
         <ForkMeRibbon/>
-        <Header/>
-        {items.length ? <Content items={items}/> : null}
-        {(this.props.undoCount > 0 || items.length > 0) &&
-            <Footer done={doneNum} count={items.length} remaining={items.length - doneNum}/>
-        }
+        <Header onCreateTodo={this.props.onCreateTodo.bind(this)}/>
+        <Content items={items} toggleAllComplete={this.props.toggleAllComplete.bind(this)}
+            toggleTodo={this.props.toggleTodo.bind(this)} handleChange={this.props.handleChange.bind(this)} handleRemove={this.props.handleRemove.bind(this)}/>
+        <Footer done={doneNum} count={items.length} remaining={items.length - doneNum} undoCount={this.props.undoCount}
+            doUndo={this.props.doUndo.bind(this)} clearAllChecked={this.props.clearAllChecked.bind(this)}/>
         </div>
     }
 }

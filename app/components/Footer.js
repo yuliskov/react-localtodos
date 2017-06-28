@@ -14,6 +14,8 @@ class Footer extends React.Component {
         return false
     }
     render() {
+        if (this.props.undoCount == 0 && this.props.count == 0)
+            return null
         return <footer>
             {this.props.undoCount > 0 &&
                 <a id="clear-completed" onClick={this.doUndo.bind(this)}>Undo {this.props.undoCount} {this.props.undoCount == 1 ? 'step' : 'steps'}</a>
