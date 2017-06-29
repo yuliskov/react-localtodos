@@ -5,16 +5,14 @@ import { compose, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
 import {store} from './addons/localStorage'
-import Cookie from 'js-cookie'
 import {IntlProvider} from 'react-intl'
+import {getLocale, loadLocaleData} from './addons/i18n'
 
 // const store = createStore(reducers)
 
-const locale = Cookie.get('locale') || 'en';
-
 ReactDOM.render(
     <Provider store={store}>
-        <IntlProvider locale={locale}>
+        <IntlProvider locale={getLocale()} messages={loadLocaleData()}>
             <TodoApp />
         </IntlProvider>
     </Provider>,
