@@ -1,13 +1,18 @@
 import React from 'react'
 import {mount} from 'enzyme'
 import Header from '../components/Header'
+import {IntlProvider} from 'react-intl'
 
 function setup() {
+    const intlProvider = new IntlProvider({locale: 'en'}, {});
+    const {intl} = intlProvider.getChildContext();
+
     const props = {
-        onCreateTodo: jest.fn()
+        onCreateTodo: jest.fn(),
+        intl: intl
     }
 
-    const enzymeWrapper = mount(<Header {...props} />)
+    const enzymeWrapper = mount(<Header.WrappedComponent {...props} />)
 
     return {
         props,
