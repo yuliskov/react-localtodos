@@ -1,5 +1,5 @@
 import React from 'react'
-import {FormattedMessage, intlShape, injectIntl, defineMessages} from 'react-intl';
+import {injectIntl, defineMessages} from 'react-intl'
 
 const messages = defineMessages({
     placeholder: {

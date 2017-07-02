@@ -26,5 +26,5 @@ export const loadLocaleData = () => {
 }
 
 export const getLocale = () => {
-    return Cookie.get('locale') || 'en'
+    return Cookie.get('locale') || 'ru'
 }

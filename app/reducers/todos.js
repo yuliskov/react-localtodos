@@ -1,8 +1,7 @@
 import undoable from 'redux-undo'
 import {excludeAction} from 'redux-undo'
-import {REHYDRATE} from 'redux-persist/constants'
-import {getStoredState} from 'redux-persist'
 import {ADD_TODO, REMOVE_TODO, REMOVE_CHECKED_TODOS, UPDATE_TODO, TOGGLE_TODO, TOGGLE_ALL_TODOS} from '../constants/ActionTypes'
+import {undoableTodosDecorator} from '../addons/localStorage'
 
 const todos = (state = [], action) => {
     switch (action.type) {
@@ -40,34 +39,9 @@ const todos = (state = [], action) => {
     }
 }
 
-// Source: http://redux.js.org/docs/recipes/ImplementingUndoHistory.html
-function undoableTodosDecorator(reducer) {
-    // Call the reducer with empty action to populate the initial state
-    const initialState = {
-        past: [],
-        present: [],
-        future: []
-    }
-
-    // Return a reducer
-    return function (state = initialState, action) {
-        const { past, present, future } = state
-
-        switch (action.type) {
-          case REHYDRATE:
-            if (!action.payload.todos)
-              return state
-            var incoming = action.payload.todos
-            return incoming
-          default:
-            return reducer(state, action)
-        }
-    }
-}
-
 const undoableTodos = undoableTodosDecorator(undoable(todos, {
     limit: 10, filter: excludeAction([TOGGLE_TODO, TOGGLE_ALL_TODOS, ADD_TODO])
-  }))
+}))
 
 export {todos}
 
