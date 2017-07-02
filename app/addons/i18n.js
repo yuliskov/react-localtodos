@@ -15,10 +15,10 @@ function requireAll(requireContext) {
     return requireContext.keys().map(requireContext);
 }
 
-export const loadLocaleData = () => {
+export const loadLocaleData = (lang) => {
     let langData = {}
     try {
-        langData = req('./' + getLocale() + '.json')
+        langData = req('./' + (lang || getLocale()) + '.json')
     } catch (e) {
         console.log(e)
     }
@@ -26,5 +26,9 @@ export const loadLocaleData = () => {
 }
 
 export const getLocale = () => {
-    return Cookie.get('locale') || 'ru'
+    return Cookie.get('locale') || 'en'
+}
+
+export const getAvailableLocales = () => {
+    return langs
 }

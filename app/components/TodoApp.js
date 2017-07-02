@@ -3,6 +3,7 @@ import ForkMeRibbon from '../components/ForkMeRibbon'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Content from '../components/Content'
+import LangMenu from '../components/LangMenu'
 require('../assets/TodoApp.styl')
 
 class TodoApp extends React.Component {
@@ -30,6 +31,7 @@ class TodoApp extends React.Component {
 
         return <div id="todoapp">
         <ForkMeRibbon/>
+        <LangMenu langs={this.props.availableLocales} selectedLang={this.props.currentLanguage} handleLangSwitch={this.props.handleLangSwitch.bind(this)}/>
         <Header onCreateTodo={this.props.onCreateTodo.bind(this)}/>
         <Content items={items} toggleAllComplete={this.props.toggleAllComplete.bind(this)}
             toggleTodo={this.props.toggleTodo.bind(this)} handleChange={this.props.handleChange.bind(this)} handleRemove={this.props.handleRemove.bind(this)}/>

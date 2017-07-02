@@ -5,26 +5,17 @@ import reducer from '../reducers'
 import { combineReducers } from 'redux'
 
 // Source: http://redux.js.org/docs/recipes/ImplementingUndoHistory.html
-const undoableTodosDecorator = (reducer) => {
-    // Call the reducer with empty action to populate the initial state
-    const initialState = {
-        past: [],
-        present: [],
-        future: []
-    }
-
+const universalDecorator = (reducer, name, initialState) => {
     // Return a reducer
-    return function (state = initialState, action) {
-        const { past, present, future } = state
-
+    return function (state, action) {
         switch (action.type) {
           case REHYDRATE:
-            if (!action.payload.todos)
-              return state
-            var incoming = action.payload.todos
+            if (!action.payload[name])
+              return state || initialState
+            const incoming = action.payload[name]
             return incoming
           default:
-            return reducer(state, action)
+            return reducer(state || initialState, action)
         }
     }
 }
@@ -32,7 +23,8 @@ const undoableTodosDecorator = (reducer) => {
 const getLocalStore = () => {
     // add `autoRehydrate` as an enhancer to your store (note: `autoRehydrate` is not a middleware)
     const store = createStore(
-        reducer
+        reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 
     // begin periodically persisting the store
@@ -41,4 +33,4 @@ const getLocalStore = () => {
     return store
 }
 
-export {getLocalStore, undoableTodosDecorator}
+export {getLocalStore, universalDecorator}
