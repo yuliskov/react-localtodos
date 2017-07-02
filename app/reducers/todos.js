@@ -1,7 +1,6 @@
 import undoable from 'redux-undo'
 import {excludeAction} from 'redux-undo'
-import {ADD_TODO, REMOVE_TODO, REMOVE_CHECKED_TODOS, UPDATE_TODO, TOGGLE_TODO, TOGGLE_ALL_TODOS} from '../constants/ActionTypes'
-import {universalDecorator} from '../addons/localStorage'
+import {ADD_TODO, REMOVE_TODO, REMOVE_CHECKED_TODOS, UPDATE_TODO, TOGGLE_TODO, TOGGLE_ALL_TODOS, SET_LANGUAGE} from '../constants/ActionTypes'
 
 const todos = (state = [], action) => {
     switch (action.type) {
@@ -39,9 +38,9 @@ const todos = (state = [], action) => {
     }
 }
 
-const undoableTodos = universalDecorator(undoable(todos, {
-    limit: 10, filter: excludeAction([TOGGLE_TODO, TOGGLE_ALL_TODOS, ADD_TODO])
-}), 'todos')
+const undoableTodos = undoable(todos, {
+    limit: 10, filter: excludeAction([TOGGLE_TODO, TOGGLE_ALL_TODOS, ADD_TODO, SET_LANGUAGE])
+})
 
 // for testing purposes
 export {todos}

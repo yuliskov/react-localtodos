@@ -2,7 +2,6 @@ import {compose, applyMiddleware, createStore} from 'redux'
 import {persistStore, autoRehydrate} from 'redux-persist'
 import {REHYDRATE} from 'redux-persist/constants'
 import reducer from '../reducers'
-import { combineReducers } from 'redux'
 
 // Source: http://redux.js.org/docs/recipes/ImplementingUndoHistory.html
 const universalDecorator = (reducer, name, initialState) => {
@@ -20,10 +19,25 @@ const universalDecorator = (reducer, name, initialState) => {
     }
 }
 
+const combineReducersDecorator = (reducer) => {
+    return function (state, action) {
+        switch (action.type) {
+            case REHYDRATE:
+                const rootState = reducer(state, action)
+                Object.keys(action.payload).forEach((key) => {
+                    rootState[key] = action.payload[key]
+                })
+                return rootState
+            default:
+                return reducer(state, action)
+        }
+    }
+}
+
 const getLocalStore = () => {
     // add `autoRehydrate` as an enhancer to your store (note: `autoRehydrate` is not a middleware)
     const store = createStore(
-        reducer,
+        combineReducersDecorator(reducer),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 
@@ -33,4 +47,4 @@ const getLocalStore = () => {
     return store
 }
 
-export {getLocalStore, universalDecorator}
+export {getLocalStore, universalDecorator, combineReducersDecorator}
