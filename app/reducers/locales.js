@@ -1,5 +1,5 @@
 import {SET_LANGUAGE} from '../constants/ActionTypes'
-import {getLocale, loadLocaleData} from '../addons/i18n'
+import {getLocale, loadLocaleData, getAvailableLocales} from '../addons/i18n'
 import {universalDecorator} from '../addons/localStorage'
 
 const locales = (state = {lang: getLocale(), messages: loadLocaleData()}, action) => {
@@ -11,6 +11,6 @@ const locales = (state = {lang: getLocale(), messages: loadLocaleData()}, action
     }
 }
 
-const localeDecorator = universalDecorator(locales, 'locales')
+const localeDecorator = universalDecorator(locales, 'locales', {lang: getLocale(), messages: loadLocaleData(), availableLocales: getAvailableLocales()})
 
 export default localeDecorator
