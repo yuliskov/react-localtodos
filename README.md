@@ -2,18 +2,25 @@
 
 ## Description
 
-This is a quick show off what technologies used in front-end development. Todo app was chosen because of everyone familiar with it. It doesn't take much time to read through sources. Beyond React+Reduce+Webpack usage you can find here: testing, localization, setting-up backed storage, validation, per-component styling, undo implementation. Running sample can be found here: [https://yuliskov.github.io/react-localtodos](https://yuliskov.github.io/react-localtodos)
+This is a quick show off what technologies used in front-end development. Todo app was chosen because of everyone familiar with it. It doesn't take much time to read through sources. Beyond React+Reduce+Webpack usage you can find here: testing, localization, persistence layer support, validation, per-component styling, undo implementation.
 
-## Demo
-
-https://yuliskov.github.io/react-localtodos/
+Running sample can be found here: [https://yuliskov.github.io/react-localtodos](https://yuliskov.github.io/react-localtodos)
 
 ## Features
 
-- Add/Change/Remove/Toggle todo items
-- Full undo support
-- Saves state between page reload
-- Used technologies: React, Redux
+- Add/Update/Delete todo item
+- Group todo operations
+- Undoing actions
+- Select translation
+- Saving state in local storage
+- Authorization (will be added soon)
+
+## Used technologies
+
+- Main libs: React+Redux+Webpack
+- Testing via Jest + Enzyme
+- Localization via React Intl
+- Styling via Stylus
 
 ## Running Example
 
