@@ -1,4 +1,4 @@
-# Todo sample app based on React and other cutting age technologies
+# Another Todo sample app based on React
 
 ## Description
 
