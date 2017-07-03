@@ -18,7 +18,7 @@ Running sample can be found here: [https://yuliskov.github.io/react-localtodos](
 ## Used technologies
 
 - Main libs: React+Redux+Webpack
-- Testing via Jest + Enzyme
+- Testing via [Jest + Enzyme](http://redux.js.org/docs/recipes/WritingTests.html)
 - Localization via [React Intl](https://github.com/yahoo/react-intl)
 - Styling via Stylus
 
