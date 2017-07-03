@@ -1,8 +1,8 @@
-# React port of Backbone's [local-todos](http://backbonejs.org/docs/todos.html)
+# Todo sample app based on React and other cutting age technologies
 
 ## Description
 
-This is a quick show off what technologies used in front-end development. Todo app was chosen because of everyone familiar with it. It doesn't take much time to read through sources. Beyond React+Reduce+Webpack usage you can find here: testing, localization, persistence layer support, validation, per-component styling, undo implementation.
+This is a quick show off what technologies used in front-end development. Todo app was chosen because of everyone familiar with it. It doesn't take much time to read through sources. Visual style taken from [local-todos](http://backbonejs.org/docs/todos.html) Backbone sample. Beyond React+Reduce+Webpack usage you can find here: testing, localization, persistence layer support, validation, per-component styling, undo implementation.
 
 Running sample can be found here: [https://yuliskov.github.io/react-localtodos](https://yuliskov.github.io/react-localtodos)
 
