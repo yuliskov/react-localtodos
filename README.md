@@ -19,7 +19,7 @@ Running sample can be found here: [https://yuliskov.github.io/react-localtodos](
 
 - Main libs: React+Redux+Webpack
 - Testing via [Jest + Enzyme](http://redux.js.org/docs/recipes/WritingTests.html)
-- Localization via [React Intl](https://github.com/yahoo/react-intl)
+- Localization via [React Intl](https://www.smashingmagazine.com/2017/01/internationalizing-react-apps)
 - Styling via Stylus
 
 ## Running Example
