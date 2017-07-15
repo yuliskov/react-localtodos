@@ -1,6 +1,46 @@
-import undoable from 'redux-undo'
-import {excludeAction} from 'redux-undo'
-import {ADD_TODO, REMOVE_TODO, REMOVE_CHECKED_TODOS, UPDATE_TODO, TOGGLE_TODO, TOGGLE_ALL_TODOS, SET_LANGUAGE} from '../constants/ActionTypes'
+// action types
+export const ADD_TODO = 'localtodos/todos/ADD_TODO'
+export const REMOVE_TODO = 'localtodos/todos/REMOVE_TODO'
+export const REMOVE_CHECKED_TODOS = 'localtodos/todos/REMOVE_CHECKED_TODOS'
+export const UPDATE_TODO = 'localtodos/todos/UPDATE_TODO'
+export const TOGGLE_TODO = 'localtodos/todos/TOGGLE_TODO'
+export const TOGGLE_ALL_TODOS = 'localtodos/todos/TOGGLE_ALL_TODOS'
+
+// actions
+
+let nextTodoId = 1
+
+export const addTodo = (title) => ({
+  type: ADD_TODO,
+  id: nextTodoId++,
+  title
+})
+
+export const removeTodo = (id) => ({
+    type: REMOVE_TODO,
+    id
+})
+
+export const removeCheckedTodos = () => ({
+    type: REMOVE_CHECKED_TODOS
+})
+
+export const updateTodo = (id, title, checked) => ({
+  type: UPDATE_TODO,
+  id, title, checked
+})
+
+export const toggleTodo = (id) => ({
+  type: TOGGLE_TODO,
+  id
+})
+
+export const toggleAllTodos = (checked) => ({
+  type: TOGGLE_ALL_TODOS,
+  checked
+})
+
+// reducer
 
 const todos = (state = [], action) => {
     switch (action.type) {
@@ -38,11 +78,4 @@ const todos = (state = [], action) => {
     }
 }
 
-const undoableTodos = undoable(todos, {
-    limit: 10, filter: excludeAction([TOGGLE_TODO, TOGGLE_ALL_TODOS, ADD_TODO, SET_LANGUAGE])
-})
-
-// for testing purposes
-export {todos}
-
-export default undoableTodos
+export default todos

@@ -1,5 +1,15 @@
-import {SET_LANGUAGE} from '../constants/ActionTypes'
 import {getLocale, loadLocaleData, getAvailableLocales} from '../addons/i18n'
+
+export const SET_LANGUAGE = 'localtodos/locales/SET_LANGUAGE'
+
+export const setLanguage = (lang) => {
+    return {
+      type: SET_LANGUAGE,
+      lang: lang,
+      messages: loadLocaleData(lang),
+      availableLocales: getAvailableLocales()
+    }
+}
 
 const locales = (state = {lang: getLocale(), messages: loadLocaleData(), availableLocales: getAvailableLocales()}, action) => {
     switch (action.type) {
