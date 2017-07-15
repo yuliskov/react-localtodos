@@ -11,7 +11,13 @@ export const setLanguage = (lang) => {
     }
 }
 
-const locales = (state = {lang: getLocale(), messages: loadLocaleData(), availableLocales: getAvailableLocales()}, action) => {
+const initState = {
+    lang: getLocale(),
+    messages: loadLocaleData(),
+    availableLocales: getAvailableLocales()
+}
+
+const locales = (state = initState, action) => {
     switch (action.type) {
         case SET_LANGUAGE:
             return {lang: action.lang, messages: action.messages, availableLocales: action.availableLocales}
