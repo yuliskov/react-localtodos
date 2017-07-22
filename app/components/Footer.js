@@ -5,8 +5,8 @@ class Footer extends React.Component {
     constructor(props) {
         super(props)
     }
-    clearCompleted() {
-        this.props.clearAllChecked()
+    removeCheckedTodos() {
+        this.props.removeCheckedTodos()
         return false;
     }
     doUndo() {
@@ -21,7 +21,7 @@ class Footer extends React.Component {
                 <a id="clear-completed" onClick={this.doUndo.bind(this)}>Undo {this.props.undoCount} {this.props.undoCount == 1 ? 'step' : 'steps'}</a>
             }
             {this.props.done > 0 &&
-                <a id="clear-completed" onClick={this.clearCompleted.bind(this)}>Remove {this.props.done} completed {this.props.done == 1 ? 'item' : 'items'}</a>
+                <a id="clear-completed" onClick={this.removeCheckedTodos.bind(this)}>Remove {this.props.done} completed {this.props.done == 1 ? 'item' : 'items'}</a>
             }
             {this.props.count > 0 &&
                 <div className="todo-count"><b>{this.props.remaining}</b> {this.props.remaining == 1 ? 'item' : 'items'} left</div>

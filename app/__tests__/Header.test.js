@@ -8,7 +8,7 @@ function setup() {
     const {intl} = intlProvider.getChildContext();
 
     const props = {
-        onCreateTodo: jest.fn(),
+        addTodo: jest.fn(),
         intl: intl
     }
 
@@ -33,14 +33,14 @@ describe('components', () => {
             expect(input.prop('placeholder')).toBe('What needs to be done?')
         })
 
-        it('should call onCreateTodo when receive onKeyPress', () => {
+        it('should call addTodo when receive onKeyPress', () => {
             const { enzymeWrapper, props } = setup()
             const input = enzymeWrapper.find('input#new-todo')
             input.props().onKeyPress({key: 'Enter', target: {value: ''}})
-            expect(props.onCreateTodo.mock.calls.length).toBe(0)
+            expect(props.addTodo.mock.calls.length).toBe(0)
             input.props().onKeyPress({key: 'Enter', target: {value: 'New Todo'}})
-            expect(props.onCreateTodo.mock.calls.length).toBe(1)
-            expect(props.onCreateTodo.mock.calls[0][0]).toEqual({title: 'New Todo'})
+            expect(props.addTodo.mock.calls.length).toBe(1)
+            expect(props.addTodo.mock.calls[0][0]).toEqual('New Todo')
         })
     })
 })

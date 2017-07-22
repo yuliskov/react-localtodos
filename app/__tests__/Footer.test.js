@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 
 function setup() {
     const props = {
-        clearAllChecked: jest.fn(),
+        removeCheckedTodos: jest.fn(),
         doUndo: jest.fn(),
         undoCount: 5,
         done: 3,
@@ -32,7 +32,7 @@ describe('components', () => {
             const { enzymeWrapper, props } = setup()
             const clearBtn = enzymeWrapper.find('a#clear-completed').at(1)
             clearBtn.props().onClick({})
-            expect(props.clearAllChecked.mock.calls.length).toBe(1)
+            expect(props.removeCheckedTodos.mock.calls.length).toBe(1)
         })
     })
 })

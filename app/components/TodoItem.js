@@ -7,32 +7,33 @@ class TodoItem extends React.Component {
             editing: false
         }
     }
-    toggleDone(e) {
-        this.props.toggleTodo(this.props.todoItem)
+    toggleTodo(e) {
+        this.props.toggleTodo(this.props.todoItem.id)
     }
     edit() {
         this.setState({editing: true})
     }
-    clear() {
-        this.props.handleRemove(this.props.todoItem)
+    removeTodo() {
+        this.props.removeTodo(this.props.todoItem.id)
     }
-    updateOnEnter(e) {
-        if (e.key == 'Enter') this.close(e);
-    }
-    close(e) {
+    updateTodo(e) {
+        if (e.key && e.key != 'Enter')
+            return;
+
         const title = this.props.todoItem.title
         const checked = this.props.todoItem.checked
         const id = this.props.todoItem.id
-        let value = e.target.value
-        if (!value) {
-            this.clear()
-        } else if (title != value) {
-            this.props.handleChange({title: value, id: id, checked: checked})
+        let newTitle = e.target.value
+        if (!newTitle) {
+            this.removeTodo()
+        } else if (title != newTitle) {
+            this.props.updateTodo(id, newTitle, checked)
         }
         this.setState({editing: false})
     }
     componentDidUpdate() {
-        this.editInput.value = this.props.todoItem.title // fix update uncontrolled components
+        // NOTE: update uncontrolled components
+        this.editInput.value = this.props.todoItem.title
         if (this.state.editing)
             this.editInput.focus()
     }
@@ -44,13 +45,13 @@ class TodoItem extends React.Component {
         const itemClassName = `${editingClass} ${checkedClass}`
         return <li className={itemClassName}>
             <div className="view" onDoubleClick={this.edit.bind(this)}>
-              <input className="toggle" type="checkbox" checked={checked} onChange={this.toggleDone.bind(this)} />
+              <input className="toggle" type="checkbox" checked={checked} onChange={this.toggleTodo.bind(this)} />
               <label>{title}</label>
-              <a className="destroy" onClick={this.clear.bind(this)}></a>
+              <a className="destroy" onClick={this.removeTodo.bind(this)}></a>
             </div>
             <input className="edit" type="text" defaultValue={title} ref={(input) => {this.editInput = input}}
-                onKeyPress={this.updateOnEnter.bind(this)}
-                onBlur={this.close.bind(this)}/>
+                onKeyPress={this.updateTodo.bind(this)}
+                onBlur={this.updateTodo.bind(this)}/>
             </li>
     }
 }

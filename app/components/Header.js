@@ -9,19 +9,20 @@ const messages = defineMessages({
 })
 
 class Header extends React.Component {
-  createOnEnter(e) {
-    if (e.key != 'Enter') return;
-    if (!e.target.value) return;
+    addTodo(e) {
+        if (e.key != 'Enter') return;
+        if (!e.target.value) return;
 
-    this.props.onCreateTodo({title: e.target.value});
-    e.target.value = ''
-  }
-  render() {
-    return <header>
-      <h1>Todos</h1>
-      <input id="new-todo" type="text" placeholder={this.props.intl.formatMessage(messages.placeholder)} onKeyPress={this.createOnEnter.bind(this)}/>
-    </header>
-  }
+        const title = e.target.value
+        this.props.addTodo(title);
+        e.target.value = ''
+    }
+    render() {
+        return <header>
+            <h1>Todos</h1>
+            <input id="new-todo" type="text" placeholder={this.props.intl.formatMessage(messages.placeholder)} onKeyPress={this.addTodo.bind(this)}/>
+        </header>
+    }
 }
 
 export default injectIntl(Header)

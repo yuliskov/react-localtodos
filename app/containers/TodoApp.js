@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import TodoApp from '../components/TodoApp'
 import { ActionCreators as UndoActionCreators } from 'redux-undo'
-import {toggleAllTodos, removeCheckedTodos, addTodo, updateTodo, removeTodo, toggleTodo} from '../reducers/todos'
+import {doUndo, addTodo, removeTodo, removeCheckedTodos, updateTodo, toggleTodo, toggleAllTodos} from '../reducers/todos'
 import {setLanguage} from '../reducers/locales'
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,32 +14,9 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    doUndo: () => {
-        dispatch(UndoActionCreators.undo())
-    },
-    toggleAllComplete: ({done}) => {
-        dispatch(toggleAllTodos(done))
-    },
-    clearAllChecked: () => {
-        dispatch(removeCheckedTodos())
-    },
-    onCreateTodo: ({title}) => {
-        dispatch(addTodo(title))
-    },
-    toggleTodo: ({id, checked}) => {
-        dispatch(toggleTodo(id))
-    },
-    handleChange: ({id, title, checked}) => {
-        dispatch(updateTodo(id, title, checked))
-    },
-    handleRemove: ({id}) => {
-        dispatch(removeTodo(id))
-    },
-    handleLangSwitch: (lang) => {
-        dispatch(setLanguage(lang))
-    }
-})
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators({doUndo, addTodo, removeTodo, removeCheckedTodos, updateTodo, toggleTodo, toggleAllTodos, setLanguage}, dispatch)
+}
 
 const ConnectedTodoApp = connect(
     mapStateToProps,

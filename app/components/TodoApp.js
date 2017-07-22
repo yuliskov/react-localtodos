@@ -31,12 +31,12 @@ class TodoApp extends React.Component {
 
         return <div id="todoapp">
         <ForkMeRibbon/>
-        <LangMenu langs={this.props.availableLocales} selectedLang={this.props.currentLanguage} handleLangSwitch={this.props.handleLangSwitch.bind(this)}/>
-        <Header onCreateTodo={this.props.onCreateTodo.bind(this)}/>
-        <Content items={items} toggleAllComplete={this.props.toggleAllComplete.bind(this)}
-            toggleTodo={this.props.toggleTodo.bind(this)} handleChange={this.props.handleChange.bind(this)} handleRemove={this.props.handleRemove.bind(this)}/>
+        <LangMenu langs={this.props.availableLocales} selectedLang={this.props.currentLanguage} setLanguage={this.props.setLanguage.bind(this)}/>
+        <Header addTodo={this.props.addTodo.bind(this)}/>
+        <Content items={items} toggleAllTodos={this.props.toggleAllTodos.bind(this)}
+            toggleTodo={this.props.toggleTodo.bind(this)} updateTodo={this.props.updateTodo.bind(this)} removeTodo={this.props.removeTodo.bind(this)}/>
         <Footer done={doneNum} count={items.length} remaining={items.length - doneNum} undoCount={this.props.undoCount}
-            doUndo={this.props.doUndo.bind(this)} clearAllChecked={this.props.clearAllChecked.bind(this)}/>
+            doUndo={this.props.doUndo.bind(this)} removeCheckedTodos={this.props.removeCheckedTodos.bind(this)}/>
         </div>
     }
 }

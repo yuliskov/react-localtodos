@@ -4,9 +4,7 @@ import TodoItem from '../components/TodoItem'
 
 function setup() {
     const props = {
-        handleChange: jest.fn(),
-        toggleTodo: jest.fn(),
-        handleRemove: jest.fn(),
+        updateTodo: jest.fn(),
         todoItem: {
             title: 'New Todo',
             checked: false,
@@ -31,11 +29,13 @@ describe('components', () => {
             expect(enzymeWrapper.find('input.edit').exists()).toBe(true)
         })
 
-        it('should call handleChange when receive onBlur', () => {
+        it('should call updateTodo when receive onBlur', () => {
             const { enzymeWrapper, props } = setup()
             const editInput = enzymeWrapper.find('input.edit')
             editInput.props().onBlur({target: {value: "Todo after edit event"}})
-            expect(props.handleChange.mock.calls[0][0]).toEqual({title: "Todo after edit event", id: 5, checked: false})
+            expect(props.updateTodo.mock.calls[0][0]).toEqual(5)
+            expect(props.updateTodo.mock.calls[0][1]).toEqual("Todo after edit event")
+            expect(props.updateTodo.mock.calls[0][2]).toEqual(false)
         })
 
         it('should change state when receive onDoubleClick', () => {

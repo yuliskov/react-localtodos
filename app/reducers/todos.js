@@ -1,4 +1,7 @@
+import { ActionCreators as UndoActionCreators } from 'redux-undo'
+
 // action types
+
 export const ADD_TODO = 'localtodos/todos/ADD_TODO'
 export const REMOVE_TODO = 'localtodos/todos/REMOVE_TODO'
 export const REMOVE_CHECKED_TODOS = 'localtodos/todos/REMOVE_CHECKED_TODOS'
@@ -6,9 +9,11 @@ export const UPDATE_TODO = 'localtodos/todos/UPDATE_TODO'
 export const TOGGLE_TODO = 'localtodos/todos/TOGGLE_TODO'
 export const TOGGLE_ALL_TODOS = 'localtodos/todos/TOGGLE_ALL_TODOS'
 
-// actions
+// action creators
 
 let nextTodoId = 1
+
+export const doUndo = () => UndoActionCreators.undo()
 
 export const addTodo = (title) => ({
   type: ADD_TODO,
