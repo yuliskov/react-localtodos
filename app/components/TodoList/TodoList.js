@@ -1,7 +1,8 @@
 import React from 'react'
 import TodoItem from './TodoItem'
+const styles = require('./TodoList.scss')
 
-class Content extends React.Component {
+class TodoList extends React.Component {
     toggleAllTodos(e) {
         var done = e.target.checked
         this.props.toggleAllTodos(done)
@@ -13,14 +14,14 @@ class Content extends React.Component {
             toggleTodo={this.props.toggleTodo.bind(this)}
             updateTodo={this.props.updateTodo.bind(this)}
             removeTodo={this.props.removeTodo.bind(this)} />)
-        return <section id="main">
+        return <section id="main" className={styles.main}>
             <input id="toggle-all" type="checkbox" onClick={this.toggleAllTodos.bind(this)}/>
             <label htmlFor="toggle-all">Mark all as complete</label>
-            <ul id="todo-list">
+            <ul id="todo-list" className={styles.todoList}>
                 {items}
             </ul>
         </section>
     }
 }
 
-export default Content
+export default TodoList

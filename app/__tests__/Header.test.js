@@ -1,6 +1,6 @@
 import React from 'react'
 import {mount} from 'enzyme'
-import Header from '../components/Header'
+import {Header} from '../components'
 import {IntlProvider} from 'react-intl'
 
 function setup() {

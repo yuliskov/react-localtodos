@@ -1,6 +1,6 @@
 import React from 'react'
 import {mount} from 'enzyme'
-import TodoItem from '../components/TodoItem'
+import {TodoItem} from '../components'
 
 function setup() {
     const props = {

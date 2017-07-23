@@ -1,4 +1,5 @@
 import React from 'react'
+const styles = require('./TodoItem.scss')
 
 class TodoItem extends React.Component {
     constructor(props) {
@@ -40,16 +41,16 @@ class TodoItem extends React.Component {
     render() {
         const checked = this.props.todoItem.checked
         const title = this.props.todoItem.title
-        const editingClass = this.state.editing ? 'editing' : ''
-        const checkedClass = checked ? 'done' : ''
+        const editingClass = this.state.editing ? styles.editing : ''
+        const checkedClass = checked ? styles.done : ''
         const itemClassName = `${editingClass} ${checkedClass}`
         return <li className={itemClassName}>
-            <div className="view" onDoubleClick={this.edit.bind(this)}>
-              <input className="toggle" type="checkbox" checked={checked} onChange={this.toggleTodo.bind(this)} />
+            <div className={styles.view + ' view'} onDoubleClick={this.edit.bind(this)}>
+              <input className={styles.toggle + ' toggle'} type="checkbox" checked={checked} onChange={this.toggleTodo.bind(this)} />
               <label>{title}</label>
-              <a className="destroy" onClick={this.removeTodo.bind(this)}></a>
+              <a className={styles.destroy} onClick={this.removeTodo.bind(this)}></a>
             </div>
-            <input className="edit" type="text" defaultValue={title} ref={(input) => {this.editInput = input}}
+            <input className={styles.edit + ' edit'} type="text" defaultValue={title} ref={(input) => {this.editInput = input}}
                 onKeyPress={this.updateTodo.bind(this)}
                 onBlur={this.updateTodo.bind(this)}/>
             </li>

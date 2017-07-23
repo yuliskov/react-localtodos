@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import TodoApp from '../components/TodoApp'
 import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import {doUndo, addTodo, removeTodo, removeCheckedTodos, updateTodo, toggleTodo, toggleAllTodos} from '../reducers/todos'
 import {setLanguage} from '../reducers/locales'
+import {TodoApp} from '../components'
 
 const mapStateToProps = (state, ownProps) => {
     return {

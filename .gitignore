@@ -1,6 +1,6 @@
 logs
 *.log
-*.bak
+*.bak*
 *.tmp
 npm-debug.log*
 node_modules/

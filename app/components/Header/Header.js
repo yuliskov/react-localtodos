@@ -1,5 +1,6 @@
 import React from 'react'
 import {injectIntl, defineMessages} from 'react-intl'
+const styles = require('./Header.scss')
 
 const messages = defineMessages({
     placeholder: {
@@ -20,7 +21,7 @@ class Header extends React.Component {
     render() {
         return <header>
             <h1>Todos</h1>
-            <input id="new-todo" type="text" placeholder={this.props.intl.formatMessage(messages.placeholder)} onKeyPress={this.addTodo.bind(this)}/>
+            <input className={styles.newTodo} id="new-todo" type="text" placeholder={this.props.intl.formatMessage(messages.placeholder)} onKeyPress={this.addTodo.bind(this)}/>
         </header>
     }
 }
