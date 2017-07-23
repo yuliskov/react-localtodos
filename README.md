@@ -40,3 +40,11 @@ $ npm start
 $ npm install
 $ npm test
 ```
+
+## Notes
+
+- Redux Ducks and example app
+    - https://github.com/erikras/ducks-modular-redux
+    - https://github.com/erikras/react-redux-universal-hot-example
+- Using Jest with Webpack
+    - https://facebook.github.io/jest/docs/webpack.html

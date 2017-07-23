@@ -45,12 +45,12 @@ class TodoItem extends React.Component {
         const checkedClass = checked ? styles.done : ''
         const itemClassName = `${editingClass} ${checkedClass}`
         return <li className={itemClassName}>
-            <div className={styles.view + ' view'} onDoubleClick={this.edit.bind(this)}>
-              <input className={styles.toggle + ' toggle'} type="checkbox" checked={checked} onChange={this.toggleTodo.bind(this)} />
+            <div className={styles.view} onDoubleClick={this.edit.bind(this)}>
+              <input className={styles.toggle} type="checkbox" checked={checked} onChange={this.toggleTodo.bind(this)} />
               <label>{title}</label>
               <a className={styles.destroy} onClick={this.removeTodo.bind(this)}></a>
             </div>
-            <input className={styles.edit + ' edit'} type="text" defaultValue={title} ref={(input) => {this.editInput = input}}
+            <input className={styles.edit} type="text" defaultValue={title} ref={(input) => {this.editInput = input}}
                 onKeyPress={this.updateTodo.bind(this)}
                 onBlur={this.updateTodo.bind(this)}/>
             </li>
