@@ -43,7 +43,7 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.(js)x?$/, loader: 'babel-loader'},
-            {test: /\.scss$/, loader: 'style-loader!css-loader?minimize&modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!autoprefixer-loader?browsers=last 2 version!sass-loader?outputStyle=expanded'},
+            {test: /\.scss$/, loader: 'style-loader!css-loader?minimize&modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer-loader?browsers=last 2 version!sass-loader?outputStyle=expanded&sourceMap'},
             {test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}
         ]
     }

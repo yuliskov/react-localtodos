@@ -4,14 +4,14 @@
     "env": {
         "development": {
             "presets": ["react-hmre"],
-            "plugins":[
+            "plugins": [
                 ["react-intl", {
                     "messagesDir": "./build/messages/"
                 }]
             ]
         },
         "production": {
-            "presets": ["react-optimize"]
+            /*"presets": ["react-optimize"]*/
         },
         "targets": {
             "browsers": ["last 2 versions"]
