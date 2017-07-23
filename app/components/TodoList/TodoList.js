@@ -1,5 +1,5 @@
 import React from 'react'
-import TodoItem from './TodoItem'
+import TodoItem from '../TodoItem/TodoItem'
 const styles = require('./TodoList.scss')
 
 class TodoList extends React.Component {
